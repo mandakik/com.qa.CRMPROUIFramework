@@ -1,6 +1,6 @@
 package base;
 
-import configManager.configReader;
+import configManager.ConfigReader;
 import constants.CRMPROConstants;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,7 +17,7 @@ public class BaseTest {
 
 
     public BaseTest(){
-        prop = configReader.readConfigFile();
+        prop = ConfigReader.readConfigFile();
         String browserName = prop.getProperty("browser");
 
         switch(browserName.toLowerCase()){
