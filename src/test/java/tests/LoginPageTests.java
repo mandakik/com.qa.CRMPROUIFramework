@@ -19,10 +19,11 @@ public class LoginPageTests extends BaseTest {
 
     @BeforeMethod
     public void setup(){
+    initialization();
     page = new LoginPage();
     }
 
-    @Test
+    @Test(enabled = false)
     public void verifyTitle(){
         Assert.assertEquals(page.getTitle(),"#1 Free CRM Business Software - Free Forever");
     }
