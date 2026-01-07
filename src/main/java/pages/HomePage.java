@@ -27,7 +27,8 @@ public class HomePage extends BaseTest {
         return driver.getTitle();
     }
 
-    public void goToContactsPage(){
+    public Contacts goToContactsPage(){
         ContactsLink.click();
+        return new Contacts();
     }
 }

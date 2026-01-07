@@ -4,7 +4,8 @@
 <suite name="CRM PRO Regression Suite" thread-count="1" parallel="tests" verbose="4">
     <test name="CRM PRO UI Tests">
     <classes>
-        <class name="tests.LoginPageTests" />
+       <!-- <class name="tests.LoginPageTests" />-->
+        <class name="tests.ContactsPageTest" />
         <!--<class name="com.qa.gorest.tests.GetUserTest" />-->
     </classes>
     </test>
