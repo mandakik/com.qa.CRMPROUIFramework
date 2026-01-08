@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 import pages.Contacts;
 import pages.HomePage;
 import pages.LoginPage;
+import utils.TestUtils;
 
 public class ContactsPageTest extends BaseTest {
 
@@ -41,7 +42,14 @@ public class ContactsPageTest extends BaseTest {
                 {"Parv","Prasade","Active"}
         };
     }
-    @Test(dataProvider="getUserData")
+
+    @DataProvider
+    public Object[][] getExcelData(){
+        return TestUtils.getContactsDetails("contacts");
+    }
+
+    //@Test(dataProvider="getUserData")
+    @Test(dataProvider="getExcelData")
     public void createNewContactTest(String firstname, String lastname, String status){
         contactPage.createNewContact(firstname, lastname, status);
     }
