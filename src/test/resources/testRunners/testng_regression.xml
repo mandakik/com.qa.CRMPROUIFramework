@@ -2,6 +2,11 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="CRM PRO Regression Suite" thread-count="1" parallel="tests" verbose="4">
+
+    <listeners>
+        <listener class-name="Listeners.ExtentReporterNG"></listener>
+    </listeners>
+
     <test name="CRM PRO UI Tests">
     <classes>
        <!-- <class name="tests.LoginPageTests" />-->
