@@ -2,7 +2,6 @@ package pages;
 
 import base.BaseTest;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -13,7 +12,7 @@ import java.time.Duration;
 
 public class Contacts extends BaseTest {
 
-    @FindBy(xpath="//div[@id='main-content']/descendant::span[text()='Contacts']")
+    @FindBy(xpath="//div[@id='main-content']/descendant::span[text()='Contacts1']")
     WebElement contacts;
 
     @FindBy(xpath="//div[@name='view']")
@@ -45,6 +44,7 @@ public class Contacts extends BaseTest {
     public void createNewContact(String fName, String lName, String s){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         WebElement newContact = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(@href,'contacts/new')]")));
+        assert newContact != null;
         newContact.click();
 
         WebElement form = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form")));

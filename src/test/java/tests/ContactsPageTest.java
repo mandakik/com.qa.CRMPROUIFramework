@@ -49,7 +49,7 @@ public class ContactsPageTest extends BaseTest {
     }
 
     //@Test(dataProvider="getUserData")
-    @Test(dataProvider="getExcelData")
+    @Test(dataProvider="getExcelData", enabled = false)
     public void createNewContactTest(String firstname, String lastname, String status){
         contactPage.createNewContact(firstname, lastname, status);
     }

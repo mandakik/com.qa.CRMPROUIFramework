@@ -61,10 +61,11 @@ public class ExtentReporterNG implements IReporter {
 
                 for (String group : result.getMethod().getGroups())
                     test.assignCategory(group);
-
+                System.out.println("screenshot path : "+screenshotPath);
                 if (result.getThrowable() != null) {
-                    test.log(Status.FAIL, result.getThrowable(), MediaEntityBuilder.createScreenCaptureFromBase64String(screenshotPath).build());
-
+                    test.log(Status.FAIL, result.getThrowable(), MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
+                    /*test.log(Status.FAIL,result.getThrowable());
+                    test.addScreenCaptureFromPath(screenshotPath);*/
                 } else {
                     test.log(status, "Test " + status.toString().toLowerCase()
                             + "ed");

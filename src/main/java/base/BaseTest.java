@@ -63,6 +63,7 @@ public class BaseTest {
             if(!destDir.exists()) destDir.mkdirs();
             String filePath = destDir+File.separator+System.currentTimeMillis()+".png";
             FileHandler.copy(file, new File(filePath));
+            System.out.println("screenshot path : "+filePath);
             return filePath;
         }catch(Exception e){
             throw new CRMException(e.getMessage());
