@@ -2,16 +2,20 @@ package Listeners;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import org.testng.*;
 import org.testng.xml.XmlSuite;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+
+import static Listeners.WebEventListener.screenshotPath;
 
 public class ExtentReporterNG implements IReporter {
 
@@ -30,9 +34,13 @@ public class ExtentReporterNG implements IReporter {
             for (ISuiteResult r : result.values()) {
                 ITestContext context = r.getTestContext();
 
-                buildTestNodes(context.getPassedTests(), Status.PASS);
-                buildTestNodes(context.getFailedTests(), Status.FAIL);
-                buildTestNodes(context.getSkippedTests(), Status.SKIP);
+                try {
+                    buildTestNodes(context.getPassedTests(), Status.PASS);
+                    buildTestNodes(context.getFailedTests(), Status.FAIL);
+                    buildTestNodes(context.getSkippedTests(), Status.SKIP);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
 
@@ -40,7 +48,7 @@ public class ExtentReporterNG implements IReporter {
         //extent.close();
     }
 
-    private void buildTestNodes(IResultMap tests, Status status) {
+    private void buildTestNodes(IResultMap tests, Status status) throws IOException {
         ExtentTest test;
 
         if (tests.size() > 0) {
@@ -55,7 +63,7 @@ public class ExtentReporterNG implements IReporter {
                     test.assignCategory(group);
 
                 if (result.getThrowable() != null) {
-                    test.log(Status.FAIL, result.getThrowable());
+                    test.log(Status.FAIL, result.getThrowable(), MediaEntityBuilder.createScreenCaptureFromBase64String(screenshotPath).build());
 
                 } else {
                     test.log(status, "Test " + status.toString().toLowerCase()

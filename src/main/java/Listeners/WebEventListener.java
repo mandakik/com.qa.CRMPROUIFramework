@@ -11,6 +11,7 @@ import static base.BaseTest.takeScreenShotAtEndOfTest;
 
 public class WebEventListener implements WebDriverListener {
 
+    public static String screenshotPath="";
     @Override
     public void beforeFindElement(WebDriver driver, By locator){
         System.out.println("finding element");
@@ -24,7 +25,7 @@ public class WebEventListener implements WebDriverListener {
     @Override
     public void onError(Object target, Method method, Object[] args, InvocationTargetException e){
         System.out.println("Exception occured !!");
-        takeScreenShotAtEndOfTest();
+        screenshotPath = takeScreenShotAtEndOfTest();
     }
 
 }

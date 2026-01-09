@@ -55,13 +55,15 @@ public class BaseTest {
         driver.manage().deleteAllCookies();
     }
 
-    public static void takeScreenShotAtEndOfTest(){
+    public static String takeScreenShotAtEndOfTest(){
 
         try {
             File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
             File destDir = new File(System.getProperty("user.dir")+File.separator+"src"+File.separator+"test"+File.separator+"resources"+File.separator+"screenshots");
             if(!destDir.exists()) destDir.mkdirs();
-            FileHandler.copy(file, new File(destDir+File.separator+System.currentTimeMillis()+".png"));
+            String filePath = destDir+File.separator+System.currentTimeMillis()+".png";
+            FileHandler.copy(file, new File(filePath));
+            return filePath;
         }catch(Exception e){
             throw new CRMException(e.getMessage());
         }
